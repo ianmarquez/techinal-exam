@@ -1,0 +1,12 @@
+#timer-container {
+  background: white;
+  height: 30px;
+  .ant-col {
+    text-align: right;
+    display: inline;
+    h3 {
+      display: inline;
+      color: red;
+    }
+  }
+}
