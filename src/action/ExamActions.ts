@@ -5,7 +5,7 @@ import ExamItem, { ExamQuestionObj } from "../models/ExamItem";
 import { Action, ExaminationState } from "../reducer/ExamReducer";
 
 const NUMBER_OF_ITEMS: number = 10;
-const NUMBER_OF_CHOICES: number = 4;
+const NUMBER_OF_CHOICES: number = 5;
 
 export default class ExamActions {
   private dispatch : Dispatch;
@@ -22,7 +22,7 @@ export default class ExamActions {
     let tempContainer : ExamItem[]  = [];
     for(let i = 0; i < examItems.length; i++) {
       const item : ExamItem = examItems[i] as ExamItem;
-      if(tempContainer.length < 3) {
+      if (tempContainer.length < NUMBER_OF_CHOICES - 1) {
         tempContainer.push(item);
       } else {
         questionaire.push(item)
