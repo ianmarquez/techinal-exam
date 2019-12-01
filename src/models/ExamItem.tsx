@@ -12,9 +12,8 @@ export default class ExamItem {
   private _title: string;
   private _slug: string;
   private _excerpt: string;
-  private _choices?: ExamItem[];
   private _answer?: number;
-  private _order? : ExamItem[]; //to keep the ordering of choices consitent
+  private _choices? : ExamItem[]; //to keep the ordering of choices consitent
 
   public constructor({ id, title, slug, excerpt }: ExamQuestionObj) {
     this._id = id;
@@ -43,10 +42,6 @@ export default class ExamItem {
     return this._choices || [];
   }
 
-  get order() {
-    return this._order || [];
-  }
-
   get answer() {
     return this._answer || 0;
   }
@@ -56,8 +51,7 @@ export default class ExamItem {
   }
 
   set choices(items: ExamItem[]) {
-    this._choices = items;
-    this._order = _.shuffle([...items, this]);
+    this._choices = _.shuffle([...items, this]);
   }
 
   public isAnswered() : boolean {

@@ -12,13 +12,14 @@ interface ComponentProps {
 interface State {
   timeRemaining: number; //in seconds
 }
+const TIME_PER_ITEM = 30;
 
 export default class pTimer extends React.Component<ComponentProps, State> {
   private timer: any;
   constructor(props: ComponentProps) {
     super(props);
     this.state = {
-      timeRemaining: props.itemLength * 30, //limit in seconds
+      timeRemaining: props.itemLength * TIME_PER_ITEM, //limit in seconds
     }
   }
 
@@ -29,7 +30,7 @@ export default class pTimer extends React.Component<ComponentProps, State> {
   componentWillUnmount() : void {
     const { onUnmount, itemLength} = this.props;
     clearInterval(this.timer);
-    onUnmount(itemLength * 30 - this.state.timeRemaining);
+    onUnmount(itemLength * TIME_PER_ITEM - this.state.timeRemaining);
   }
 
   private startTimer = () => {

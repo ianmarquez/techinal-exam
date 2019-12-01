@@ -37,7 +37,7 @@ export default class ExamItemComponent extends React.Component<ComponentProps> {
 
   public render() : React.ReactFragment {
     const { item, index, state } = this.props;
-    const choices : ExamItem[] = item.order;
+    const choices : ExamItem[] = item.choices;
     return (
       <React.Fragment>
         <Row>

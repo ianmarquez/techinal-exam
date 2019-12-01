@@ -61,6 +61,7 @@ class ExamComponent extends React.Component<Props, State> {
 
   private validateAnswers = () : void => {
     const { setExamState, items } = this.props; 
+    this.viewResults();
     setExamState('done', items);
   }
 
@@ -82,6 +83,7 @@ class ExamComponent extends React.Component<Props, State> {
   private viewResults = () : void => {
     const { items } = this.props;
     const correctItems: ExamItem[] = _.filter(items, (item: ExamItem) => item.isCorrect()); 
+    Modal.destroyAll();
     Modal.info({
       content: <Row style={{ textAlign: 'center' }}>
         <Col span={24}>
@@ -101,6 +103,8 @@ class ExamComponent extends React.Component<Props, State> {
   private onTimerUnmount = (timeRemaining: number) : void => {
     this.setState({
       timeSpent: timeRemaining
+    }, () => {
+      this.validateAnswers();
     })
   }
 
